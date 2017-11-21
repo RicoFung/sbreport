@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fontFamilies>
+	<fontFamily name="msyh"><!--字体名称 -->
+		<normal>jaspertemplate/fonts/msyh.ttf</normal><!--字体文件的路径 -->
+		<bold>jaspertemplate/fonts/msyh.ttf</bold>
+		<italic>jaspertemplate/fonts/msyh.ttf</italic>
+		<boldItalic>jaspertemplate/fonts/msyh.ttf</boldItalic>
+		<pdfEncoding>Identity-H</pdfEncoding><!--这里的定义就与上面1.1的图设置相匹配了 -->
+		<pdfEmbedded>true</pdfEmbedded>
+		<exportFonts>
+			<export key="net.sf.jasperreports.html">'msyh', Arial, Helvetica, sans-serif</export>
+			<export key="net.sf.jasperreports.xhtml">'msyh', Arial, Helvetica, sans-serif</export>
+		</exportFonts>
+	</fontFamily>
+</fontFamilies>
