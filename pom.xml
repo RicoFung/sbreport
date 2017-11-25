@@ -52,8 +52,8 @@
 		<dependency><groupId>mysql</groupId><artifactId>mysql-connector-java</artifactId></dependency>
 		<!-- db driver oracle
 		 添加至本地jar命令：mvn install:install-file -Dfile=ojdbc14.jar -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=1.0 -Dpackaging=jar
-		-->
 		<dependency><groupId>com.oracle</groupId><artifactId>ojdbc14</artifactId><version>1.0</version></dependency>
+		-->
 		<!-- 其他工具包 -->
 		<dependency><groupId>com.alibaba</groupId><artifactId>fastjson</artifactId><version>1.2.4</version></dependency>
 		<dependency><groupId>commons-logging</groupId><artifactId>commons-logging</artifactId><version>1.2</version></dependency>
