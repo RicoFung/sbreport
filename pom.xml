@@ -73,11 +73,24 @@
 		<!-- cas client  -->
 		<dependency><groupId>org.jasig.cas.client</groupId><artifactId>cas-client-core</artifactId><version>3.4.1</version><exclusions><exclusion><groupId>javax.servlet</groupId><artifactId>servlet-api</artifactId></exclusion></exclusions></dependency>
 		<!-- jasperreports -->
-		<dependency>  
-			<groupId>net.sf.jasperreports</groupId>  
-			<artifactId>jasperreports</artifactId>  
-			<version>6.4.3</version>
-		</dependency> 
+		<dependency><groupId>net.sf.jasperreports</groupId><artifactId>jasperreports</artifactId><version>6.4.3</version></dependency> 
+		<!-- birt 引入失败，暂时用jar代替
+		<dependency>
+		    <groupId>org.eclipse.birt.runtime</groupId>
+		    <artifactId>org.eclipse.birt.runtime</artifactId>
+		    <version>4.6.0-20160607</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.eclipse.birt</groupId>
+		    <artifactId>coreapi</artifactId>
+		    <version>2.3.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.eclipse.birt</groupId>
+		    <artifactId>engineapi</artifactId>
+		    <version>2.2.2</version>
+		</dependency>
+			 -->	
 	</dependencies>
 	<!-- maven 打包插件 -->
 	<build>
@@ -104,4 +117,19 @@
 		</plugins>
 		<finalName>sbreport</finalName>
 	</build>
+	<!-- 指定JDK -->
+	<profiles>
+		<profile>     
+		    <id>jdk-1.8</id>     
+		    <activation>     
+		        <activeByDefault>true</activeByDefault>     
+		        <jdk>1.8</jdk>     
+		    </activation>     
+		    <properties>     
+		        <maven.compiler.source>1.8</maven.compiler.source>     
+		        <maven.compiler.target>1.8</maven.compiler.target>     
+		        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>     
+		    </properties>     			
+	    </profile>
+	</profiles>
 </project>
