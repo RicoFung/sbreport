@@ -2,22 +2,17 @@ package com.report.action;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletOutputStream;
 
-import org.apache.derby.tools.sysinfo;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 
 import chok.devwork.BaseController;
@@ -26,13 +21,12 @@ import chok.util.birt.BirtUtil;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperRunManager;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 
 @Scope("prototype")
 @Controller
 @RequestMapping("/demo")
-public class ReportAction extends BaseController<Object>
+public class DemoAction extends BaseController<Object>
 {
 	@RequestMapping("/jasper")
 	public void jasper()
