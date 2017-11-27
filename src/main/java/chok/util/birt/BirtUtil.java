@@ -26,7 +26,6 @@ public class BirtUtil
 	{
 
 		EngineConfig config = new EngineConfig();
-		config.setEngineHome("");
 		ReportEngine birtEngine = new ReportEngine(config);
 		try
 		{

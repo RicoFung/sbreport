@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer 版本 4.6.0.v201606072122 内部版本 &lt;@BUILD@></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">72</property>
+    <parameters>
+        <scalar-parameter name="user" id="42">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="remark" id="44">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <script-data-source name="scriptDs" id="6"/>
+    </data-sources>
+    <data-sets>
+        <script-data-set name="ds1" id="7">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">0</property>
+                    <property name="name">code</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">name</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">code</property>
+                </structure>
+                <structure>
+                    <property name="columnName">name</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">code</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">scriptDs</property>
+            <method name="open"><![CDATA[sresultList=ds1.getResultList();
+stotalrows = sresultList.size();
+scurrentrow=0;]]></method>
+            <method name="fetch"><![CDATA[if(scurrentrow >= stotalrows){
+return false;
+}
+row["code"] = sresultList.get(scurrentrow).get("code");
+row["name"] = sresultList.get(scurrentrow).get("code");
+scurrentrow++;
+return true;]]></method>
+            <method name="close"><![CDATA[sresultList=null;]]></method>
+        </script-data-set>
+        <script-data-set name="ds2" id="8">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">0</property>
+                    <property name="name">code</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">name</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">code</property>
+                </structure>
+                <structure>
+                    <property name="columnName">name</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">code</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">scriptDs</property>
+            <method name="open"><![CDATA[sresultList=ds2.getResultList();
+stotalrows = sresultList.size();
+scurrentrow=0;]]></method>
+            <method name="fetch"><![CDATA[if(scurrentrow >= stotalrows){
+return false;
+}
+row["code"] = sresultList.get(scurrentrow).get("code");
+row["name"] = sresultList.get(scurrentrow).get("name");
+scurrentrow++;
+return true;]]></method>
+            <method name="close"><![CDATA[sresultList=null;]]></method>
+        </script-data-set>
+    </data-sets>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <label id="4">
+            <text-property name="text">test birt</text-property>
+        </label>
+        <table id="10">
+            <property name="dataSet">ds1</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">code</property>
+                    <text-property name="displayName">code</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["code"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">name</property>
+                    <text-property name="displayName">name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="24"/>
+            <column id="25"/>
+            <header>
+                <row id="11">
+                    <cell id="12">
+                        <label id="13">
+                            <text-property name="text">code</text-property>
+                        </label>
+                    </cell>
+                    <cell id="14">
+                        <label id="15">
+                            <text-property name="text">name</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="16">
+                    <cell id="17">
+                        <data id="18">
+                            <property name="resultSetColumn">code</property>
+                        </data>
+                    </cell>
+                    <cell id="19">
+                        <data id="20">
+                            <property name="resultSetColumn">name</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="21">
+                    <cell id="22"/>
+                    <cell id="23"/>
+                </row>
+            </footer>
+        </table>
+        <table id="26">
+            <property name="dataSet">ds2</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">code</property>
+                    <text-property name="displayName">code</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["code"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">name</property>
+                    <text-property name="displayName">name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="40"/>
+            <column id="41"/>
+            <header>
+                <row id="27">
+                    <cell id="28">
+                        <label id="29">
+                            <text-property name="text">code</text-property>
+                        </label>
+                    </cell>
+                    <cell id="30">
+                        <label id="31">
+                            <text-property name="text">name</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="32">
+                    <cell id="33">
+                        <data id="34">
+                            <property name="resultSetColumn">code</property>
+                        </data>
+                    </cell>
+                    <cell id="35">
+                        <data id="36">
+                            <property name="resultSetColumn">name</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="37">
+                    <cell id="38"/>
+                    <cell id="39"/>
+                </row>
+            </footer>
+        </table>
+        <data id="43">
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">user</property>
+                    <expression name="expression" type="javascript">params["user"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <property name="resultSetColumn">user</property>
+        </data>
+        <data id="45">
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">remark</property>
+                    <expression name="expression" type="javascript">params["remark"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <property name="resultSetColumn">remark</property>
+        </data>
+    </body>
+</report>
