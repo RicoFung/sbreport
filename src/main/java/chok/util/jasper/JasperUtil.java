@@ -1,7 +1,6 @@
 package chok.util.jasper;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,10 +15,19 @@ import org.slf4j.LoggerFactory;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 
+import net.sf.jasperreports.engine.DefaultJasperReportsContext;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
+import net.sf.jasperreports.engine.export.HtmlExporter;
+import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleHtmlExporterOutput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
 
 public class JasperUtil
 {
@@ -27,23 +35,24 @@ public class JasperUtil
 	
 	/**
 	 * 根据json生成报表
-	 * json 格式：[[{"code":"主行d1c1","name":"主行d1n1"}],[{"dt_code":"明细行d2c1","dt_name":"明细行d2n1"},{"dt_code":"明细行d2c2","dt_name":"明细行d2n2"}]]
-	 * @param request
+	 * @see  JSON参考格式：[[{"code":"主行d1c1","name":"主行d1n1"}],[{"dt_code":"明细行d2c1","dt_name":"明细行d2n1"},{"dt_code":"明细行d2c2","dt_name":"明细行d2n2"}]]
+	 * @param request HTTP Request中需赋值以下参数：name, format, json
 	 * @param response
 	 * @throws Exception
 	 */
 	public static void genWebReportByJson(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
+		// 获取参数
 		String name = request.getParameter("name");
 		String format = request.getParameter("format");
 		String json = request.getParameter("json");
 		if(log.isInfoEnabled()) 
 		{
-			log.info(" ==> name: "+name);
-			log.info(" ==> format: "+format);
-			log.info(" ==> json: "+json);
+			log.info("name   ==> "+name);
+			log.info("format ==> "+format);
+			log.info("json   ==> "+json);
 		}
-		// 获取Json数据
+		// 解析Json
 		List<List<Map<String, ?>>> datas=JSON.parseObject(json, new TypeReference<List<List<Map<String, ?>>>>(){});
 		// 创建数据源对象
 		JRDataSource mainDs = null;
@@ -55,30 +64,58 @@ public class JasperUtil
 			else
 				param.put("detailDs"+i, new JRMapCollectionDataSource(datas.get(i)));
 		}
-		// 获取报表模板
+		// 编译报表模板
 		JasperCompileManager.compileReportToFile(request.getServletContext().getRealPath("/WEB-INF/report/jasper/"+name+".jrxml"));
 		File reportFile = new File(request.getServletContext().getRealPath("/WEB-INF/report/jasper/"+name+".jasper"));
-		byte[] bytes = null;
+		// 按格式生成
 		switch (format)
 		{
 			case "pdf":
-				bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), param, mainDs);
-				response.setContentType("application/"+format);
+				pdf(response, reportFile.getPath(), param, mainDs);
 				break;
 			case "html":
-				String reportPath =JasperRunManager.runReportToHtmlFile(reportFile.getPath(), param, mainDs);
-		        File reportHtmlFile = new File(reportPath);
-		        FileInputStream fis = new FileInputStream(reportHtmlFile);
-		        bytes =  new byte[(int)reportHtmlFile.length()];
-		        fis.read(bytes);
-		        response.setContentType("text/"+format);
-		        reportHtmlFile.delete();// 无效？
+				html(response, reportFile.getPath(), param, mainDs);
+				break;
+			case "xlsx":
+				xlsx(response, name, reportFile.getPath(), param, mainDs);
 				break;
 		}
-		// 生成文件
+	}
+	
+	private static void pdf(HttpServletResponse response, String reportFilePath, Map<String, Object> param, JRDataSource mainDs) throws Exception
+	{
+		byte[] bytes = JasperRunManager.runReportToPdf(reportFilePath, param, mainDs);
+		response.reset();// 清空输出流
+		response.setContentType("application/pdf;charset=UTF-8");
 		ServletOutputStream ouputStream = response.getOutputStream();
 		ouputStream.write(bytes, 0, bytes.length);
 		ouputStream.flush();
 		ouputStream.close();
+	}
+	
+	private static void html(HttpServletResponse response, String reportFilePath, Map<String, Object> param, JRDataSource mainDs) throws Exception
+	{
+		response.reset();// 清空输出流
+		response.setContentType("text/html;charset=UTF-8");
+		JasperPrint jasperPrint = JasperFillManager.fillReport(reportFilePath, param, mainDs);
+		HtmlExporter exporter = new HtmlExporter(DefaultJasperReportsContext.getInstance());
+		exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+		exporter.setExporterOutput(new SimpleHtmlExporterOutput(response.getWriter()));
+		exporter.exportReport();
+	}
+	
+	private static void xlsx(HttpServletResponse response, String name, String reportFilePath, Map<String, Object> param, JRDataSource mainDs) throws Exception
+	{
+		response.reset();// 清空输出流
+		response.setHeader("Content-disposition", "attachment; filename=" + name + "." +"xlsx");
+		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8");
+		JasperPrint jasperPrint = JasperFillManager.fillReport(reportFilePath, param, mainDs);
+		JRXlsxExporter exporter = new JRXlsxExporter();
+		exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+		exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(response.getOutputStream()));
+		SimpleXlsxReportConfiguration configuration = new SimpleXlsxReportConfiguration();
+		configuration.setOnePagePerSheet(false);
+		exporter.setConfiguration(configuration);
+		exporter.exportReport();
 	}
 }
