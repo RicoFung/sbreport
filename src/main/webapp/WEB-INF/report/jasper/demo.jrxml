@@ -46,58 +46,57 @@
 	<background>
 		<band splitType="Stretch"/>
 	</background>
-	<title>
-		<band height="58" splitType="Stretch">
-			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+	<pageHeader>
+		<band height="46" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.spreadsheet.SpreadsheetLayout"/>
 			<staticText>
-				<reportElement x="0" y="0" width="190" height="58" uuid="2c63c838-e676-45ea-9cdd-84b3c3f64e86"/>
+				<reportElement x="0" y="0" width="190" height="46" uuid="2c63c838-e676-45ea-9cdd-84b3c3f64e86"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[EPO Fashion Co. , Ltd.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="190" y="0" width="200" height="58" uuid="d072b109-91dc-4b55-a8cd-554b0968428d"/>
+				<reportElement x="190" y="0" width="200" height="46" uuid="d072b109-91dc-4b55-a8cd-554b0968428d"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="msyh" size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[广州爱帛服饰有限公司]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="423" y="0" width="57" height="58" uuid="75f032af-9b6b-482c-97c8-c16aa430e0a0"/>
+				<reportElement x="390" y="0" width="90" height="46" uuid="75f032af-9b6b-482c-97c8-c16aa430e0a0"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Bottom">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="msyh"/>
 				</textElement>
 				<text><![CDATA[打印日期：]]></text>
 			</staticText>
 			<textField pattern="M/d/yy">
-				<reportElement x="480" y="28" width="70" height="30" uuid="b25352fe-29cc-4114-8323-b0ed5ad008c7"/>
-				<textElement textAlignment="Right" verticalAlignment="Bottom"/>
+				<reportElement x="480" y="0" width="75" height="46" uuid="b25352fe-29cc-4114-8323-b0ed5ad008c7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
-	</title>
-	<pageHeader>
-		<band height="165" splitType="Stretch">
-			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.spreadsheet.SpreadsheetLayout"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="165">
 			<frame>
 				<reportElement stretchType="ContainerHeight" x="0" y="0" width="190" height="165" uuid="fc414e14-a342-4af8-a4d8-a58acdb23264"/>
 				<box>
@@ -176,10 +175,10 @@
 				</frame>
 			</frame>
 		</band>
-	</pageHeader>
+	</columnHeader>
 	<detail>
 		<band height="287" splitType="Stretch">
-			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.spreadsheet.SpreadsheetLayout"/>
 			<componentElement>
 				<reportElement x="0" y="0" width="555" height="287" uuid="85b94a5f-1caa-48d6-81b7-120e1ea7fcbe">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
