@@ -35,7 +35,7 @@ public class JasperUtil
 	
 	/**
 	 * 根据json生成报表
-	 * @see  JSON参考格式：[[{"code":"主行d1c1","name":"主行d1n1"}],[{"dt_code":"明细行d2c1","dt_name":"明细行d2n1"},{"dt_code":"明细行d2c2","dt_name":"明细行d2n2"}]]
+	 * @see  JSON参考格式：[[{"code":"主行d1c1","name":"主行d1n1"}],[{"dt_group":"A","dt_code":"明细行d2c1","dt_name":"明细行d2n1","dt_qty":1},{"dt_group":"B","dt_code":"明细行d2c2","dt_name":"明细行d2n2","dt_qty":2},{"dt_group":"A","dt_code":"明细行d2c1","dt_name":"明细行d2n1","dt_qty":1},{"dt_group":"B","dt_code":"明细行d2c2","dt_name":"明细行d2n2","dt_qty":2}]]
 	 * @param request HTTP Request中需赋值以下参数：name, format, json
 	 * @param response
 	 * @throws Exception
