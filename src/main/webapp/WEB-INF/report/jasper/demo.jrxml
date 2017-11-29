@@ -35,7 +35,10 @@
 		</queryString>
 		<field name="dt_code" class="java.lang.String"/>
 		<field name="dt_name" class="java.lang.String"/>
-		<field name="dt_qty" class="java.lang.String"/>
+		<field name="dt_qty" class="java.lang.Integer"/>
+		<variable name="QTY_TOTAL" class="java.lang.Integer" calculation="Sum">
+			<variableExpression><![CDATA[$F{dt_qty}]]></variableExpression>
+		</variable>
 	</subDataset>
 	<parameter name="detailDs1" class="net.sf.jasperreports.engine.JRDataSource"/>
 	<queryString>
@@ -192,6 +195,7 @@
 					</datasetRun>
 					<jr:column width="190" uuid="2c983689-7642-4b91-820a-9cf2a6bbda74">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:tableFooter style="Table_TH" height="30" rowSpan="1"/>
 						<jr:detailCell style="Table_TD" height="190">
 							<box>
 								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -203,6 +207,7 @@
 					</jr:column>
 					<jr:column width="150" uuid="521997e8-cf66-4325-b74b-a23f8f6dbd5b">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<jr:tableFooter style="Table_TH" height="30" rowSpan="1"/>
 						<jr:detailCell style="Table_TD" height="190">
 							<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 							<textField>
@@ -237,6 +242,13 @@
 					</jr:column>
 					<jr:column width="160" uuid="cebe05dd-d716-4d69-9799-a9ddff617e02">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+						<jr:tableFooter style="Table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="160" height="30" uuid="a9a75924-3544-4e71-9fcc-d329b39d0ac9"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<text><![CDATA[total:]]></text>
+							</staticText>
+						</jr:tableFooter>
 						<jr:detailCell style="Table_TD" height="190">
 							<textField>
 								<reportElement x="0" y="0" width="160" height="49" uuid="4dd44f1e-5d14-4e69-8e55-f4ed76e82536"/>
@@ -270,6 +282,13 @@
 					</jr:column>
 					<jr:column width="55" uuid="47786556-24a1-4707-be52-a4bb5c9f7a4b">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+						<jr:tableFooter style="Table_TH" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="55" height="30" uuid="f944b933-09be-48f6-a865-fc5b7e960838"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$V{QTY_TOTAL}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
 						<jr:detailCell style="Table_TD" height="190">
 							<textField>
 								<reportElement x="0" y="0" width="55" height="49" uuid="e44699d9-03d9-4f3f-80de-28b7f8a42bbb"/>
