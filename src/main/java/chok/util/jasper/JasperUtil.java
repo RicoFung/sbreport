@@ -82,6 +82,14 @@ public class JasperUtil
 		}
 	}
 	
+	/**
+	 * 生成PDF
+	 * @param response
+	 * @param reportFilePath
+	 * @param param
+	 * @param mainDs
+	 * @throws Exception
+	 */
 	private static void pdf(HttpServletResponse response, String reportFilePath, Map<String, Object> param, JRDataSource mainDs) throws Exception
 	{
 		byte[] bytes = JasperRunManager.runReportToPdf(reportFilePath, param, mainDs);
@@ -93,6 +101,14 @@ public class JasperUtil
 		ouputStream.close();
 	}
 	
+	/**
+	 * 生成HTML
+	 * @param response
+	 * @param reportFilePath
+	 * @param param
+	 * @param mainDs
+	 * @throws Exception
+	 */
 	private static void html(HttpServletResponse response, String reportFilePath, Map<String, Object> param, JRDataSource mainDs) throws Exception
 	{
 		response.reset();// 清空输出流
@@ -104,6 +120,15 @@ public class JasperUtil
 		exporter.exportReport();
 	}
 	
+	/**
+	 * 生成XLSX
+	 * @param response
+	 * @param name
+	 * @param reportFilePath
+	 * @param param
+	 * @param mainDs
+	 * @throws Exception
+	 */
 	private static void xlsx(HttpServletResponse response, String name, String reportFilePath, Map<String, Object> param, JRDataSource mainDs) throws Exception
 	{
 		response.reset();// 清空输出流
