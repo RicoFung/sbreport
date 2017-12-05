@@ -105,4 +105,29 @@ public abstract class BaseDao<T,PK> extends SqlSessionDaoSupport
 		List result = queryMap(m);
 		return result;
 	}
+	
+	public void add(String statementName, Object param)
+	{
+		this.getSqlSession().insert(getStatementName(statementName), param);
+	}
+	
+	public void del(String statementName, Object param)
+	{
+		this.getSqlSession().delete(getStatementName(statementName), param);
+	}
+	
+	public void upd(String statementName, Object param)
+	{
+		this.getSqlSession().update(getStatementName(statementName), param);
+	}
+	
+	public Object get(String statementName, Object param)
+	{
+		return this.getSqlSession().selectOne(getStatementName(statementName), param);
+	}
+	
+	public List<?> query(String statementName, Object param)
+	{
+		return this.getSqlSession().selectList(getStatementName(statementName), param);
+	}
 }
