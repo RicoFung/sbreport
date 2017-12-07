@@ -176,7 +176,7 @@
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 					</frame>
 					<frame>
@@ -220,7 +220,6 @@
 						</jr:groupHeader>
 						<jr:groupFooter groupName="Group1">
 							<jr:cell style="Table_CH" height="30" rowSpan="1">
-								<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
 								<staticText>
 									<reportElement x="0" y="0" width="278" height="30" uuid="ac7ea44d-3b3c-4311-ab24-112c6d50e716">
 										<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
@@ -352,8 +351,10 @@
 								<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
 									<staticText>
 										<reportElement x="0" y="0" width="80" height="30" uuid="8f6af4e0-ea67-4e70-ad34-df61792b2003"/>
-										<textElement textAlignment="Center" verticalAlignment="Middle"/>
-										<text><![CDATA[GROUP]]></text>
+										<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+											<font fontName="msyh"/>
+										</textElement>
+										<text><![CDATA[组]]></text>
 									</staticText>
 								</jr:columnHeader>
 								<jr:detailCell style="Table_TD" height="40">
