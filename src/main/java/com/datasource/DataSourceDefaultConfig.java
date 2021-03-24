@@ -24,7 +24,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource(value = "classpath:config/datasource.properties", ignoreResourceNotFound = true)
+@PropertySource(value = "classpath:datasource.properties", ignoreResourceNotFound = true)
 public class DataSourceDefaultConfig 
 {
     @Value("${datasource.default.url}")

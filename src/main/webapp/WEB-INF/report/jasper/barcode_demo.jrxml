@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.0.final using JasperReports Library version 6.5.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="demo" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d1ed61bf-f269-4638-8649-de8253eb19f8">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<subDataset name="detailDs1" uuid="708b8e9b-c4bb-4ce6-8363-1db6259b58e7">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="dt_group" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.tree.path" value=""/>
+		</field>
+		<field name="dt_code" class="java.lang.String"/>
+		<field name="dt_name" class="java.lang.String"/>
+		<field name="dt_qty" class="java.lang.Integer"/>
+		<sortField name="dt_group"/>
+		<variable name="QTY_TOTAL" class="java.lang.Integer" calculation="Sum">
+			<variableExpression><![CDATA[$F{dt_qty}]]></variableExpression>
+		</variable>
+		<variable name="GROUP_QTY_TOTAL" class="java.lang.Integer" resetType="Group" resetGroup="Group1" calculation="Sum">
+			<variableExpression><![CDATA[$F{dt_qty}]]></variableExpression>
+		</variable>
+		<group name="Group1">
+			<groupExpression><![CDATA[$F{dt_group}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="detailDs1" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="barcode" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="46" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.spreadsheet.SpreadsheetLayout"/>
+			<staticText>
+				<reportElement x="0" y="0" width="190" height="46" uuid="2c63c838-e676-45ea-9cdd-84b3c3f64e86"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EPO Fashion Co. , Ltd.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="0" width="200" height="46" uuid="d072b109-91dc-4b55-a8cd-554b0968428d"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="msyh" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[广州爱帛服饰有限公司]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="0" width="90" height="46" uuid="75f032af-9b6b-482c-97c8-c16aa430e0a0"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="msyh"/>
+				</textElement>
+				<text><![CDATA[打印日期：]]></text>
+			</staticText>
+			<textField pattern="M/d/yy">
+				<reportElement x="480" y="0" width="75" height="46" uuid="b25352fe-29cc-4114-8323-b0ed5ad008c7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="50">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="57009acc-ea57-476b-90da-7622e3315aba">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f8207db0-bab3-4c27-8c2f-c527831cbe43"/>
+				</reportElement>
+				<text><![CDATA[barcode]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="315" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="30" uuid="c5cb6f79-4da0-4fe0-b707-e01d48a2cfa4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f8207db0-bab3-4c27-8c2f-c527831cbe43"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{barcode}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="160" y="0" width="100" height="30" uuid="93d3c58f-cbea-4c3b-9568-c4c70bf55da4"/>
+				<jr:Codabar xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<jr:codeExpression><![CDATA[$F{barcode}]]></jr:codeExpression>
+				</jr:Codabar>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+			<textField>
+				<reportElement x="0" y="0" width="278" height="28" uuid="1b9db73f-5bcc-48a5-8dc4-3d8a122f7197"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="msyh"/>
+				</textElement>
+				<textFieldExpression><![CDATA["第"+$V{PAGE_NUMBER}+"/"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="278" y="0" width="277" height="28" uuid="207b6280-3e13-4060-9162-5119feaaf66c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="msyh"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}+"页"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
